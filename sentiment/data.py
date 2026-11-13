@@ -11,10 +11,14 @@ import pandas as pd
 LABELS = ("neg", "pos")
 
 
-def ensure_corpus(name: str = "movie_reviews") -> None:
-    """Download an NLTK corpus the first time it's needed."""
+def ensure_corpus(name: str = "movie_reviews", kind: str = "corpora") -> None:
+    """Download an NLTK resource the first time it's needed.
+
+    `kind` is the folder NLTK keeps it under: "corpora" for datasets,
+    "tokenizers" for models such as punkt_tab (needed by `.sents()`).
+    """
     try:
-        nltk.data.find(f"corpora/{name}")
+        nltk.data.find(f"{kind}/{name}")
     except LookupError:
         nltk.download(name, quiet=True)
 
