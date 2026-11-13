@@ -14,7 +14,10 @@ Just started. The notebook ([sentiment_analysis.ipynb](sentiment_analysis.ipynb)
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 pytest                      # downloads the corpus on the first run
+jupyter lab sentiment_analysis.ipynb
 ```
+
+CI runs the tests and executes the whole notebook from top to bottom on every push, so the notebook in the repo always runs as committed.
 
 ## License
 
