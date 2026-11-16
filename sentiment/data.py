@@ -38,3 +38,16 @@ def load_reviews() -> pd.DataFrame:
         for fileid in movie_reviews.fileids(label)
     ]
     return pd.DataFrame(rows)
+
+
+def split_reviews(
+    df: pd.DataFrame, test_size: float = 0.25, seed: int = 42
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Stratified train/test split, fixed by `seed` so every model sees the same test set.
+
+    Anything that gets tuned (thresholds, hyperparameters) is tuned on the train part only.
+    """
+    from sklearn.model_selection import train_test_split
+
+    train, test = train_test_split(df, test_size=test_size, stratify=df["label"], random_state=seed)
+    return train.reset_index(drop=True), test.reset_index(drop=True)
