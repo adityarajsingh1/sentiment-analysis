@@ -6,7 +6,16 @@ I'm using the NLTK `movie_reviews` corpus: 2,000 IMDb reviews from Pang & Lee (2
 
 ## Status
 
-The notebook ([sentiment_analysis.ipynb](sentiment_analysis.ipynb)) loads the corpus and explores it: review lengths per class, the most common words, and the words that lean positive or negative (log-odds with an informative prior). Baseline models come next.
+The notebook ([sentiment_analysis.ipynb](sentiment_analysis.ipynb)) loads the corpus, explores it, and compares the first models on a fixed, held-out set of 500 reviews (the trained models are still untuned, so their numbers will move):
+
+| Model | Test accuracy |
+|---|---|
+| VADER lexicon, threshold 0 | 65.0% |
+| VADER lexicon, threshold tuned on train | 69.0% |
+| Bag of words + Naive Bayes | 81.2% |
+| TF-IDF + logistic regression | 86.0% |
+
+Tuning, a confusion matrix and error analysis come next.
 
 ## Setup
 
