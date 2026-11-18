@@ -15,11 +15,13 @@ jobs:
           python-version: "3.12"
           cache: pip
       - name: Install
-        run: pip install -r requirements.txt ruff
+        run: pip install -r requirements.txt ruff mypy
       - name: Download the corpus
         run: python -m nltk.downloader movie_reviews stopwords punkt_tab vader_lexicon
       - name: Lint
         run: ruff check .
+      - name: Type check
+        run: mypy predict.py sentiment
       - name: Tests
         run: pytest -q
       - name: Run the notebook top to bottom
